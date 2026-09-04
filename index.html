@@ -83,7 +83,6 @@
 
     if (tg) {
       tg.sendData(JSON.stringify(data));
-      tg.close();
     } else {
       document.getElementById('status').textContent =
         'Formularul trebuie deschis din Telegram.';
