@@ -1,149 +1,20 @@
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OMD EHS - Registration</title>
+<div class="container">
+  <h2>👤 Registration</h2>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <button id="registerBtn" type="button">REGISTER</button>
+</div>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<script>
+  const tg = window.Telegram.WebApp;
 
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: var(--tg-theme-bg-color, #ffffff);
-      color: var(--tg-theme-text-color, #000000);
-    }
+  tg.ready();
+  tg.expand();
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-    }
+  document.getElementById("registerBtn").addEventListener("click", () => {
+    const data = {
+      action: "registration"
+    };
 
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      background: var(--tg-theme-secondary-bg-color, #f5f5f5);
-      color: var(--tg-theme-text-color, #000000);
-    }
-
-    button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 17px;
-      font-weight: bold;
-      background: var(--tg-theme-button-color, #2481cc);
-      color: var(--tg-theme-button-text-color, #ffffff);
-      cursor: pointer;
-    }
-
-    #status {
-      margin-top: 15px;
-      text-align: center;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <h2>👤 User Registration</h2>
-
-    <label for="name">Nume</label>
-    <input
-      type="text"
-      id="name"
-      placeholder="Introdu numele"
-    >
-
-    <label for="surname">Prenume</label>
-    <input
-      type="text"
-      id="surname"
-      placeholder="Introdu prenumele"
-    >
-
-    <label for="phone">Phone</label>
-    <input
-      type="tel"
-      id="phone"
-      placeholder="061234567"
-    >
-
-    <label for="company">Company</label>
-    <input
-      type="text"
-      id="company"
-      placeholder="Compania"
-    >
-
-    <button id="submit">REGISTER</button>
-
-    <div id="status"></div>
-
-  </div>
-
-  <script>
-    const tg = window.Telegram?.WebApp;
-
-    if (tg) {
-      tg.ready();
-      tg.expand();
-    }
-
-    document.getElementById('submit').addEventListener('click', () => {
-
-      const name = document.getElementById('name').value.trim();
-      const surname = document.getElementById('surname').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const company = document.getElementById('company').value.trim();
-
-      if (!name || !surname || !phone || !company) {
-        document.getElementById('status').textContent =
-          'Completează toate cele 4 câmpuri.';
-        return;
-      }
-
-      const data = {
-        action: 'registration',
-        name: name,
-        surname: surname,
-        phone: phone,
-        company: company
-      };
-
-      if (tg) {
-        tg.sendData(JSON.stringify(data));
-      } else {
-        document.getElementById('status').textContent =
-          'Formularul trebuie deschis din Telegram.';
-        console.log(data);
-      }
-    });
-  </script>
-
-</body>
-</html>
+    tg.sendData(JSON.stringify(data));
+  });
+</script>
